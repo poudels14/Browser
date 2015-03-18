@@ -12,11 +12,16 @@ class ViewController: UIViewController, UIWebViewDelegate{
     
     
     @IBOutlet weak var webpage: UIWebView!
+    
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
     let notification = NSNotificationCenter.defaultCenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view.backgroundColor = UIColor.redColor()
+        notification.addObserver(self, selector: "keyboardAppreared:", name: UIKeyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: "keyboardDisappear:", name: UIKeyboardWillHideNotification, object: nil)
         
         var request:NSURLRequest = NSURLRequest (URL: NSURL(string: "http://google.com")!)
         
@@ -44,6 +49,31 @@ class ViewController: UIViewController, UIWebViewDelegate{
     
     func webViewDidFinishLoad(webView: UIWebView!) {
         println("Webview did finish load")
+    }
+    
+    /* Keyboard notification selector */
+    func keyboardAppreared(notif: NSNotification){
+        let userInfo = notif.userInfo
+//        let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue;
+        println("Here it comes, Keyboard!")
+//        bottomToolbar.frame = CGRectOffset(self.view.frame, 0,  -100)
+        animateViewMoving(true, moveValue: 220)
+        
+    }
+    
+    func keyboardDisappear(notif: NSNotification){
+        println("Keyboard hidden")
+        animateViewMoving(true, moveValue: -220)
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.2
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
     }
     
 }
