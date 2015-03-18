@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newapp/ViewController.swift"
+            timestampString = "448142962.749513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "newapp.ViewController.init (newapp.ViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; newapp.ViewController"
+                  moduleName = "newapp"
+                  urlString = "file:///Volumes/OSx/Users/sagar/Desktop/Dropbox/iPhoneAppDev/newapp/newapp/ViewController.swift"
+                  timestampString = "448142982.965685"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "143">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "newapp.ViewController.init (newapp.ViewController.Type)() -&gt; newapp.ViewController"
+                  moduleName = "newapp"
+                  urlString = "file:///Volumes/OSx/Users/sagar/Desktop/Dropbox/iPhoneAppDev/newapp/newapp/ViewController.swift"
+                  timestampString = "448142982.965927"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "newapp.ViewController.init (newapp.ViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; newapp.ViewController"
+                  moduleName = "newapp"
+                  urlString = "file:///Volumes/OSx/Users/sagar/Desktop/Dropbox/iPhoneAppDev/newapp/newapp/ViewController.swift"
+                  timestampString = "448142982.966119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "73">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
