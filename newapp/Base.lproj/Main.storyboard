@@ -16,19 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3i-Fc-lzF">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="379" height="601"/>
-                                </variation>
-                            </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7Y-hh-sIs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Back" id="Gyj-Xz-7s8"/>
                                     <barButtonItem style="plain" id="iQT-OP-eid">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="6V7-hz-rKb">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="242" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="6V7-hz-rKb">
                                             <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -41,24 +34,35 @@
                                     <rect key="frame" x="0.0" y="621" width="379" height="44"/>
                                 </variation>
                             </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3i-Fc-lzF">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="20" width="379" height="601"/>
+                                </variation>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="F3i-Fc-lzF"/>
                                 <exclude reference="K7Y-hh-sIs"/>
+                                <exclude reference="F3i-Fc-lzF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="F3i-Fc-lzF"/>
                                 <include reference="K7Y-hh-sIs"/>
+                                <include reference="F3i-Fc-lzF"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="Gyj-Xz-7s8" id="fhG-4j-RsM"/>
+                        <outlet property="bottomToolbar" destination="K7Y-hh-sIs" id="XkA-El-FMF"/>
+                        <outlet property="forwardButton" destination="xYc-Hm-Ruo" id="qHv-AN-qyc"/>
+                        <outlet property="httpTextBox" destination="iQT-OP-eid" id="vdA-Db-JN3"/>
                         <outlet property="webpage" destination="F3i-Fc-lzF" id="qco-Mi-5lm"/>
                     </connections>
                 </viewController>

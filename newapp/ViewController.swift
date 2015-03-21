@@ -11,23 +11,27 @@ import UIKit
 class ViewController: UIViewController, UIWebViewDelegate{
     
     
+    @IBOutlet weak var httpTextBox: UIBarButtonItem!
     @IBOutlet weak var webpage: UIWebView!
     
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     
     let notification = NSNotificationCenter.defaultCenter()
+    var keepKeyboardHeight:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = UIColor.redColor()
         notification.addObserver(self, selector: "keyboardAppreared:", name: UIKeyboardWillShowNotification, object: nil)
         notification.addObserver(self, selector: "keyboardDisappear:", name: UIKeyboardWillHideNotification, object: nil)
         
         var request:NSURLRequest = NSURLRequest (URL: NSURL(string: "http://google.com")!)
-        
+        backButton.action = Selector("goBack")
+        forwardButton.action = Selector("goForward")
         
         webpage.loadRequest(request)
-//        webpage.delegate = self
+        webpage.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,27 +57,48 @@ class ViewController: UIViewController, UIWebViewDelegate{
     
     /* Keyboard notification selector */
     func keyboardAppreared(notif: NSNotification){
-        let userInfo = notif.userInfo
-//        let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue;
-        println("Here it comes, Keyboard!")
-//        bottomToolbar.frame = CGRectOffset(self.view.frame, 0,  -100)
-        animateViewMoving(true, moveValue: 220)
-        
+        let userInfo:Dictionary = notif.userInfo!
+        var dictUserInfo = userInfo as Dictionary<String, NSValue>
+        var keyboardSize = dictUserInfo["UIKeyboardFrameEndUserInfoKey"]?.CGRectValue()
+        var height:Optional = keyboardSize?.height
+        var heightTo = height! - keepKeyboardHeight
+        keepKeyboardHeight = height!
+        var keyboardTime:Optional = dictUserInfo["UIKeyboardAnimationDurationUserInfoKey"]?
+        animateViewMoving(true, height: -heightTo, time: keyboardTime!)
     }
     
     func keyboardDisappear(notif: NSNotification){
-        println("Keyboard hidden")
-        animateViewMoving(true, moveValue: -220)
+        var dictUserInfo = notif.userInfo as Dictionary<String, NSValue>
+        var keyboardSize = dictUserInfo["UIKeyboardBoundsUserInfoKey"]?.CGRectValue()
+        var height:Optional = keyboardSize?.height
+        var keyboardTime:Optional = dictUserInfo["UIKeyboardAnimationDurationUserInfoKey"]?
+        keepKeyboardHeight = 0
+        animateViewMoving(false, height: height!, time: keyboardTime!)
     }
     
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        var movementDuration:NSTimeInterval = 0.2
-        var movement:CGFloat = ( up ? -moveValue : moveValue)
+    func animateViewMoving (up :Bool, height :CGFloat, time :AnyObject)->Void{
+        var movementDuration:NSTimeInterval = NSTimeInterval(time as NSNumber)
+        var movement:CGFloat = height
         UIView.beginAnimations( "animateView", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
         UIView.setAnimationDuration(movementDuration )
-        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        var frame = self.view.frame
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement)
         UIView.commitAnimations()
+    }
+    
+    func goBack(){
+        println("go back")
+        if (webpage.canGoBack){
+            webpage.goBack()
+        }
+    }
+    
+    func goForward(){
+        println("go forward")
+        if (webpage.canGoForward){
+            webpage.goForward()
+        }
     }
     
 }
